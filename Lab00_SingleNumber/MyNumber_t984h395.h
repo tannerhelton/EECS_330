@@ -26,21 +26,23 @@ public:
     MyNumber(MyNumber<DataType> &&rhs) // move constructor with a MyNumber instance
     {
         // code begins
-        num = new DataType(rhs.read());
+        num = rhs.read();
+        delete rhs;
         // code ends
     }
 
     MyNumber &operator=(const MyNumber<DataType> &rhs) // copy assignment with a MyNumber instance
     {
         // code begins
-        return this;
+        MyNumber temp(rhs);
+        return *this;
         // code ends
     }
 
     MyNumber &operator=(MyNumber<DataType> &&rhs) // move assignment with a MyNumber instance
     {
         // code begins
-        return this;
+        return *this;
         // code ends
     }
 
@@ -61,7 +63,9 @@ public:
     void write(DataType rhs)
     {
         // code begins
-        num = new DataType(rhs);
+        auto tmp = new DataType(rhs);
+        std::swap(tmp, num);
+        delete tmp;
         // code ends
     }
 
