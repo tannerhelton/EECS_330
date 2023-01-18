@@ -33,14 +33,14 @@ public:
     MyNumber &operator=(const MyNumber<DataType> &rhs) // copy assignment with a MyNumber instance
     {
         // code begins
-        return *this;
+        return this;
         // code ends
     }
 
     MyNumber &operator=(MyNumber<DataType> &&rhs) // move assignment with a MyNumber instance
     {
         // code begins
-        return *this;
+        return this;
         // code ends
     }
 
