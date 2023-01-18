@@ -1,6 +1,8 @@
 .DS_Store
 *.pdf
 *.zip
+result.txt
+test_result
 Lab1
 Lab2
 Lab3
