@@ -12,60 +12,59 @@ public:
     explicit MyNumber(DataType rhs = 0) // default constructor
     {
         // code begins
-        num = new DataType(rhs);
+        num = new DataType{rhs}; // allocate memory for num
         // code ends
     }
 
     MyNumber(const MyNumber<DataType> &rhs) // copy constructor with a MyNumber instance
     {
         // code begins
-        num = new DataType(rhs.read());
+        num = new DataType{*rhs.num}; // allocate memory for num
         // code ends
     }
 
     MyNumber(MyNumber<DataType> &&rhs) // move constructor with a MyNumber instance
     {
         // code begins
-        num = rhs.read();
-        delete rhs;
+        rhs.num = nullptr; // set rhs.num to nullptr
         // code ends
     }
 
     MyNumber &operator=(const MyNumber<DataType> &rhs) // copy assignment with a MyNumber instance
     {
         // code begins
-        MyNumber temp(rhs);
-        return *this;
+        MyNumber copy = rhs; // copy rhs
+        swap(*this, copy);   // swap *this and copy
+        return *this;        // return *this
         // code ends
     }
 
     MyNumber &operator=(MyNumber<DataType> &&rhs) // move assignment with a MyNumber instance
     {
         // code begins
-        return *this;
+        swap(num, *rhs.num); // swap num and *rhs.num
+        return *this;        // return *this
         // code ends
     }
 
     ~MyNumber(void) // destructor
     {
         // code begins
-        delete num;
+        delete num; // delete num
         // code ends
     }
 
     DataType read(void) const
     {
         // code begins
-        return *num;
+        return *num; // return *num
         // code ends
     }
 
     void write(DataType rhs)
     {
         // code begins
-        auto tmp = new DataType(rhs);
-        std::swap(tmp, num);
-        delete tmp;
+        *num = rhs; // set *num to rhs
         // code ends
     }
 
