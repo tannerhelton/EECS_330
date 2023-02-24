@@ -27,14 +27,14 @@ private:
         }
     };
 
-    int theSize; // the number of elements that the linked list is currently holding
-    Node *head;  // pointer to the head node; does not hold real data
-    Node *tail;  // pointer to the tail note; does not hold real data
+    int mySize; // the number of elements that the linked list is currently holding
+    Node *head; // pointer to the head node; does not hold real data
+    Node *tail; // pointer to the tail note; does not hold real data
 
     void init()
     {
         // code begins
-        theSize = 0;
+        mySize = 0;
         head = new Node;
         tail = new Node;
         head->next = tail;
@@ -111,8 +111,7 @@ public:
 
         // move to the previous data element
         // the suffix decrement (e.g. p --) with 1 int parameter
-        const_iterator
-        operator--(int)
+        const_iterator operator--(int)
         {
             // code begins
             const_iterator old = *this;
@@ -228,12 +227,12 @@ public:
     }
 
     // move constructor
-    MyLinkedList(MyLinkedList &&rhs) : theSize(rhs.theSize),
+    MyLinkedList(MyLinkedList &&rhs) : mySize(rhs.mySize),
                                        head(rhs.head),
                                        tail(rhs.tail)
     {
         // code begins
-        rhs.theSize = 0;
+        rhs.mySize = 0;
         rhs.head = nullptr;
         rhs.tail = nullptr;
         // code ends
@@ -264,7 +263,7 @@ public:
     {
         // code begins
         clear();
-        std::swap(theSize, rhs.theSize);
+        std::swap(mySize, rhs.mySize);
         std::swap(head, rhs.head);
         std::swap(tail, rhs.tail);
         return *this;
@@ -304,7 +303,7 @@ public:
     int size() const
     {
         // code begins
-        return theSize;
+        return mySize;
         // code ends
     }
 
@@ -312,7 +311,7 @@ public:
     bool empty() const
     {
         // code begins
-        return theSize == 0;
+        return mySize == 0;
         // code ends
     }
 
@@ -320,7 +319,7 @@ public:
     void clear()
     {
         // code begins
-        while (theSize > 0)
+        while (mySize > 0)
         {
             erase(begin());
         }
@@ -364,7 +363,7 @@ public:
     {
         // code begins
         Node *p = itr.current;
-        theSize++;
+        mySize++;
         return {p->prev = p->prev->next = new Node{x, p->prev, p}};
         // code ends
     }
@@ -374,7 +373,7 @@ public:
     {
         // code begins
         Node *p = itr.current;
-        theSize++;
+        mySize++;
         return {p->prev = p->prev->next = new Node{std::move(x), p->prev, p}};
         // code ends
     }
@@ -388,7 +387,7 @@ public:
         p->prev->next = p->next;
         p->next->prev = p->prev;
         delete p;
-        theSize--;
+        mySize--;
         return retVal;
         // code ends
     }
@@ -473,25 +472,10 @@ public:
     MyLinkedList<DataType> &appendList(MyLinkedList<DataType> &&rlist)
     {
         // code begins
-        if (rlist.empty())
+        for (iterator i = rlist.begin(); i != rlist.end(); ++i)
         {
-            return *this;
+            push_back(*i);
         }
-        if (empty())
-        {
-            head = rlist.head;
-            tail = rlist.tail;
-            theSize = rlist.theSize;
-        }
-        else
-        {
-            tail->next = rlist.head;
-            rlist.head->prev = tail;
-            tail = rlist.tail;
-            theSize += rlist.theSize;
-        }
-        rlist.head = rlist.tail = nullptr;
-        rlist.theSize = 0;
         return *this;
         // code ends
     }
@@ -501,38 +485,17 @@ public:
     bool swapAdjElements(iterator &itr)
     {
         // code begins
-        if (empty() || ++itr == end())
-        { // use std::next here
+        if (itr.current->next == nullptr)
+        {
             return false;
         }
-
-        Node *p = itr.current;
-        Node *q = p->next;
-        p->next = q->next;
-        q->next = p;
-        p->prev = q;
-        q->prev = p->prev;
-
-        if (p->next != nullptr)
+        else
         {
-            p->next->prev = p;
+            DataType old = itr.current->data;
+            itr.current->data = itr.current->next->data;
+            itr.current->next->data = old;
+            return true;
         }
-        if (q->prev != nullptr)
-        {
-            q->prev->next = q;
-        }
-
-        if (p == head)
-        {
-            head = q;
-        }
-        if (q == tail)
-        {
-            tail = p;
-        }
-
-        itr.current = q;
-        return true;
         // code ends
     }
 };
