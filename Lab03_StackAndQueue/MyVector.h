@@ -6,17 +6,16 @@
 template <typename DataType>
 class MyVector
 {
- public:
-  MyVector(const int init_capacity = 16) :
-   theCapacity{init_capacity},
-   theSize{0}
+public:
+  MyVector(const int init_capacity = 16) : theCapacity{init_capacity},
+                                           theSize{0}
   {
-    data = new DataType [init_capacity]; 
+    data = new DataType[init_capacity];
   }
-  
-  ~MyVector() 
+
+  ~MyVector()
   {
-    delete [] data;
+    delete[] data;
   }
 
   int size(void)
@@ -32,32 +31,32 @@ class MyVector
   void print(void)
   {
     std::cout << "Printing the vector" << std::endl;
-    for(int i = 0; i < theSize; ++ i)
+    for (int i = 0; i < theSize; ++i)
     {
       std::cout << data[i] << std::endl;
-      //std::cout << *(data + i) << std::endl;
-    } 
+      // std::cout << *(data + i) << std::endl;
+    }
   }
 
   void insert(const DataType &value, const int index)
   {
-    if(index <= theSize)
+    if (index <= theSize)
     {
-      if(theSize >= theCapacity)
+      if (theSize >= theCapacity)
       {
         resize(theSize + 1);
-      } 
+      }
       else
       {
-        ++ theSize;
+        ++theSize;
       }
-      
-      for(int i = theSize - 2; i >= index; -- i)
+
+      for (int i = theSize - 2; i >= index; --i)
       {
         data[i + 1] = std::move(data[i]);
       }
       data[index] = value;
-    }  
+    }
     return;
   }
 
@@ -68,21 +67,21 @@ class MyVector
 
   void reserve(const int newCapacity)
   {
-    if(newCapacity > theCapacity)
+    if (newCapacity > theCapacity)
     {
       theCapacity = newCapacity;
-      DataType *tmp = new DataType [newCapacity];
-      for(int i = 0; i < theSize; ++ i)
+      DataType *tmp = new DataType[newCapacity];
+      for (int i = 0; i < theSize; ++i)
       {
         tmp[i] = std::move(data[i]);
       }
       std::swap(data, tmp);
-      delete [] tmp;
+      delete[] tmp;
     }
-    return;  
+    return;
   }
 
-  void resize(const int newSize) 
+  void resize(const int newSize)
   {
     theSize = newSize;
     reserve(2 * newSize);
@@ -91,13 +90,13 @@ class MyVector
 
   void remove(const int index)
   {
-    if(index >= 0 && index <= theSize - 1)
+    if (index >= 0 && index <= theSize - 1)
     {
-      for(int i = index; i < theSize - 1; ++ i)
+      for (int i = index; i < theSize - 1; ++i)
       {
         data[i] = std::move(data[i + 1]);
       }
-      -- theSize;
+      --theSize;
     }
     return;
   }
@@ -108,12 +107,10 @@ class MyVector
     return;
   }
 
- private:
+private:
   DataType *data = nullptr;
-  int theSize;	// the num of elements we have
+  int theSize;     // the num of elements we have
   int theCapacity; // the num of elements we can hold
-
 };
-
 
 #endif

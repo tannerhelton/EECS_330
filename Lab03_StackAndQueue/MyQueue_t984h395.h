@@ -16,17 +16,7 @@ private:
     void resize(size_t newSize)
     {
         // code begins
-        if (newSize <= this->size())
-        {
-            dataEnd = dataStart + newSize - 1;
-            this->truncate(dataEnd + 1);
-        }
-        else
-        {
-            size_t newCapacity = std::max(this->capacity() * 2, newSize);
-            reserve(newCapacity);
-            dataEnd = dataStart + this->size() - 1;
-        }
+
         // code ends
     }
 
@@ -34,17 +24,7 @@ private:
     void reserve(size_t newCapacity)
     {
         // code begins
-        if (newCapacity > this->capacity())
-        {
-            MyVector<DataType> temp(newCapacity);
-            size_t n = this->size();
-            for (size_t i = 0; i < n; i++)
-            {
-                temp[i] = (*this)[dataStart + i];
-            }
-            dataEnd = dataStart + n - 1;
-            std::swap(*this, temp);
-        }
+
         // code ends
     }
 
@@ -53,8 +33,7 @@ public:
     explicit MyQueue(size_t initSize = 0)
     {
         // code begins
-        dataStart = 0;
-        dataEnd = initSize - 1;
+
         // code ends
     }
 
@@ -62,8 +41,7 @@ public:
     MyQueue(const MyQueue &rhs)
     {
         // code begins
-        dataStart = 0;
-        dataEnd = this->size() - 1;
+
         // code ends
     }
 
@@ -71,10 +49,7 @@ public:
     MyQueue(MyQueue &&rhs)
     {
         // code begins
-        dataStart = rhs.dataStart;
-        dataEnd = rhs.dataEnd;
-        rhs.dataStart = 0;
-        rhs.dataEnd = 0;
+
         // code ends
     }
 
@@ -82,9 +57,7 @@ public:
     ~MyQueue()
     {
         // code begins
-        dataStart = 0;
-        dataEnd = 0;
-        this->clear();
+
         // code ends
     }
 
@@ -92,13 +65,7 @@ public:
     MyQueue &operator=(const MyQueue &rhs)
     {
         // code begins
-        if (this != &rhs)
-        {
-            MyVector<DataType>::operator=(rhs);
-            dataStart = 0;
-            dataEnd = this->size() - 1;
-        }
-        return *this;
+
         // code ends
     }
 
@@ -106,15 +73,7 @@ public:
     MyQueue &operator=(MyQueue &&rhs)
     {
         // code begins
-        if (this != &rhs)
-        {
-            MyVector<DataType>::operator=(std::move(rhs));
-            dataStart = rhs.dataStart;
-            dataEnd = rhs.dataEnd;
-            rhs.dataStart = 0;
-            rhs.dataEnd = 0;
-        }
-        return *this;
+
         // code ends
     }
 
@@ -122,12 +81,7 @@ public:
     void enqueue(const DataType &x)
     {
         // code begins
-        if (this->size() == this->capacity())
-        {
-            resize(this->size() + 1);
-        }
-        dataEnd++;
-        (*this)[dataEnd] = x;
+
         // code ends
     }
 
@@ -135,12 +89,7 @@ public:
     void enqueue(DataType &&x)
     {
         // code begins
-        if (this->size() == this->capacity())
-        {
-            resize(this->size() + 1);
-        }
-        dataEnd++;
-        (*this)[dataEnd] = std::move(x);
+
         // code ends
     }
 
@@ -148,16 +97,7 @@ public:
     void dequeue(void)
     {
         // code begins
-        if (empty())
-        {
-            throw std::out_of_range("queue is empty");
-        }
-        dataStart++;
-        if (empty())
-        {
-            dataStart = 0;
-            dataEnd = -1;
-        }
+
         // code ends
     }
 
@@ -165,11 +105,7 @@ public:
     const DataType &front(void) const
     {
         // code begins
-        if (empty())
-        {
-            throw std::out_of_range("queue is empty");
-        }
-        return (*this)[dataStart];
+
         // code ends
     }
 
@@ -177,7 +113,6 @@ public:
     bool empty(void) const
     {
         // code begins
-        return dataStart > dataEnd;
 
         // code ends
     }
@@ -186,7 +121,7 @@ public:
     size_t size() const
     {
         // code begins
-        return dataEnd - dataStart + 1;
+
         // code ends
     }
 
@@ -194,7 +129,7 @@ public:
     size_t capacity(void) const
     {
         // code begins
-        return MyVector<DataType>::capacity();
+
         // code ends
     }
 };
