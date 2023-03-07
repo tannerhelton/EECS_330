@@ -2,5 +2,6 @@
   "files.associations": {
     "new": "cpp",
     "stdexcept": "cpp"
-  }
+  },
+  "cmake.configureOnOpen": true
 }

@@ -112,8 +112,7 @@ public:
         if (dataEnd == MyVector<DataType>::size())
         {
             // The dynamic array is full, resize it
-            reserve(2 * MyVector<
-                            DataType>::capacity());
+            reserve(2 * MyVector<DataType>::capacity());
         }
         MyVector<DataType>::operator=(x);
         ++dataEnd;
