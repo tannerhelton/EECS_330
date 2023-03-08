@@ -5,8 +5,17 @@ first: MyQueue_t984h395.h MyStack_t984h395.h
 	@python3 GradingScript.py result.txt Outputs/output_0.txt
 	@make clean
 
-all:
+test: main perms
 	@./test.sh
 
+valgrindtest: main perms
+	@./valgrindTest.sh
+
+perms:
+	@chmod +x test.sh valgrindTest.sh
+
 clean:
-	rm -f my_program result.txt
+	@rm -f my_program result.txt
+
+main: MainTest.cpp *.h
+	@g++ -std=c++11 MainTest.cpp -o my_program

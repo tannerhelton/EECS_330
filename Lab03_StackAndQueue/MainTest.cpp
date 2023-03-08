@@ -4,8 +4,8 @@
 #include <string>
 #include <cstdlib>
 
-#include "MyQueue_t984h395.h"
 #include "MyStack_t984h395.h"
+#include "MyQueue_t984h395.h"
 
 using namespace std;
 

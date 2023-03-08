@@ -1,5 +1,6 @@
+
 for i in {0..9}; do
-    ./my_program "Inputs/input_$i.txt" > "result_$i.txt"
+    valgrind --leak-check=full ./my_program "Inputs/input_$i.txt" > "result_$i.txt"
 done
 
 for i in {0..9}; do

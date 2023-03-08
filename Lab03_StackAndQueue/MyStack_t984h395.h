@@ -4,72 +4,72 @@
 #include <iostream>
 #include <algorithm>
 
-#include "MyVector.h"
+#include "MyVector_t984h395.h"
 
 template <typename DataType>
 class MyStack : private MyVector<DataType>
-{  
-  public:
-
+{
+public:
     // default constructor
     explicit MyStack(size_t initSize = 0)
     {
         // code begins
-
+        MyVector<DataType>::reserve(initSize + MyVector<DataType>::SPARE_CAPACITY);
         // code ends
     }
 
     // copy constructor
-    MyStack(const MyStack & rhs)
+    MyStack(const MyStack &rhs)
     {
         // code begins
-
+        *this = rhs;
         // code ends
     }
 
     // move constructor
-    MyStack(MyStack && rhs)
+    MyStack(MyStack &&rhs)
     {
         // code begins
-
+        *this = std::move(rhs);
         // code ends
     }
 
     // destructor
     ~MyStack()
     {
-        ;    
     }
 
     // copy assignment
-    MyStack & operator= (const MyStack & rhs)
+    MyStack &operator=(const MyStack &rhs)
     {
         // code begins
-
+        MyVector<DataType>::operator=(rhs);
+        return *this;
         // code ends
     }
 
     // move assignment
-    MyStack & operator= (MyStack && rhs)
+    MyStack &operator=(MyStack &&rhs)
     {
         // code begins
-
+        MyVector<DataType>::operator=(std::move(rhs));
+        return *this;
         // code ends
     }
 
     // insert x to the stack
-    void push(const DataType & x)
+    void push(const DataType &x)
     {
         // code begins
-
+        MyVector<DataType>::push_back(x);
         // code ends
     }
 
     // insert x to the stack
-    void push(DataType && x)
+    void push(DataType &&x)
     {
         // code begins
-
+        MyVector<DataType>::emplace_back(std::move(x));
         // code ends
     }
 
@@ -77,15 +77,15 @@ class MyStack : private MyVector<DataType>
     void pop(void)
     {
         // code begins
-
+        MyVector<DataType>::pop_back();
         // code ends
     }
 
     // access the last element of the stack
-    const DataType & top(void) const
+    const DataType &top(void) const
     {
         // code begins
-
+        return MyVector<DataType>::back();
         // code ends
     }
 
@@ -93,7 +93,7 @@ class MyStack : private MyVector<DataType>
     bool empty(void) const
     {
         // code begins
-
+        return MyVector<DataType>::empty();
         // code ends
     }
 
@@ -101,19 +101,17 @@ class MyStack : private MyVector<DataType>
     size_t size() const
     {
         // code begins
-
+        return MyVector<DataType>::size();
         // code ends
     }
 
     // access the capacity of the stack
-    size_t capacity(void) const 
+    size_t capacity(void) const
     {
         // code begins
-
+        return MyVector<DataType>::capacity();
         // code ends
     }
-
 };
-
 
 #endif // __MYSTACK_H__

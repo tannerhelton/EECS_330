@@ -104,6 +104,7 @@ public:
       rhs.theSize = 0;
       rhs.theCapacity = 0;
     }
+    return *this;
     // code ends
   }
 
