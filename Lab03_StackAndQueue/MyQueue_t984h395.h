@@ -70,7 +70,6 @@ public:
     ~MyQueue()
     {
         // code begins
-        // Base class destructor is called
         // code ends
     }
 
@@ -145,7 +144,6 @@ public:
         // code begins
         if (empty())
         {
-
             throw std::out_of_range("Queue is empty");
         }
         return (*this)[dataStart];
@@ -156,7 +154,7 @@ public:
     bool empty(void) const
     {
         // code begins
-        return (size() == 0);
+        return size() == 0;
         // code ends
     }
 
@@ -164,7 +162,7 @@ public:
     size_t size() const
     {
         // code begins
-        return (dataEnd - dataStart);
+        return dataEnd - dataStart;
         // code ends
     }
 
