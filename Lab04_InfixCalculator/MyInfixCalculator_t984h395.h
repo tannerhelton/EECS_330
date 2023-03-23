@@ -101,36 +101,34 @@ private:
     {
         // code begins
         for (size_t i = 0; i < s.size(); i++)
-        {                         // loop through the string
-            char currChar = s[i]; // get the current character
-            // fix the bitwise OR operator to a logical OR operator
+        {
             if (isDigit(s[i]) || (s[i] == '-' && isDigit(s[i + 1]) && (i == 0 || (!isDigit(s[i - 1]) && s[i - 1] != ')'))))
             {
-                std::string num; // create a string to store the number
-                num += s[i];     // add the character to the string
-                i++;             // move to the next character
+                std::string num;
+                num += s[i];
+                i++;
 
                 while (i < s.size() && (isDigit(s[i]) || s[i] == '.'))
-                {                // while the current character is a digit or a decimal point
-                    num += s[i]; // add the current character to the string
-                    i++;         // move to the next character
+                {
+                    num += s[i];
+                    i++;
                 }
 
                 if (i < s.size() && isDigit(s[i]) == false)
-                {        // if the current character is not a digit
-                    i--; // move back to the previous character
+                {
+                    i--;
                 }
-                tokens.push_back(num); // add the number to the vector
+                tokens.push_back(num);
             }
             else if (isValidParenthesis(s[i]))
-            {                             // if the current character is a parenthesis
-                std::string par(1, s[i]); // create a string to store the parenthesis and add the parenthesis to the string
-                tokens.push_back(par);    // add the parenthesis to the vector
+            {
+                std::string p(1, s[i]);
+                tokens.push_back(p);
             }
             else
-            {                            // if the current character is an operator (not a digit or a parenthesis)
-                std::string op(1, s[i]); // create a string to store the operator and add the operator to the string
-                tokens.push_back(op);    // add the operator to the vector
+            {
+                std::string op(1, s[i]);
+                tokens.push_back(op);
             }
         }
         // code ends
