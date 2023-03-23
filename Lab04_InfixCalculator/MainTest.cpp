@@ -4,7 +4,6 @@
 #include <fstream>
 #include <string>
 
-// #include "MyInfixCalculator_t984h395.h"
 #include "MyInfixCalculator_t984h395.h"
 
 using namespace std;
