@@ -1,7 +1,7 @@
-g++ -std=c++11 MainTest.cpp -o my_program
+g++ -std=c++11 MainTest.cpp -o Lab
 
 for i in {0..9}; do
-    valgrind --leak-check=full ./my_program "Inputs/input_$i.txt" > "result_$i.txt"
+    valgrind --leak-check=full ./Lab "Inputs/input_$i.txt" > "result_$i.txt"
 done
 
 for i in {0..9}; do
@@ -9,4 +9,4 @@ for i in {0..9}; do
     rm "result_$i.txt"
 done
 
-rm test_result
+rm Lab
