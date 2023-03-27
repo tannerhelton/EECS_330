@@ -7,13 +7,13 @@
 #include <algorithm>
 #include <string>
 
-#include "MyVector.h"
-#include "MyLinkedList.h"
+#include "MyVector_t984h395.h"
+#include "MyLinkedList_t984h395.h"
 
-static const long long uh_param_a = 53;       // universal hash function parameter a
-static const long long uh_param_b = 97;       // universal hash function parameter b
-static const long long prime_digits = 19;     // parameter used for finding a Mersenne prime
-static const long long mersenne_prime = (1 << prime_digits) - 1;  // the Mersenne prime for universal hashing
+static const long long uh_param_a = 53;                          // universal hash function parameter a
+static const long long uh_param_b = 97;                          // universal hash function parameter b
+static const long long prime_digits = 19;                        // parameter used for finding a Mersenne prime
+static const long long mersenne_prime = (1 << prime_digits) - 1; // the Mersenne prime for universal hashing
 
 // fast calculation of (n modulo mersenne_prime)
 long long fastMersenneModulo(const long long n)
@@ -27,7 +27,7 @@ long long fastMersenneModulo(const long long n)
 template <typename KeyType>
 class HashFunc
 {
-  public:
+public:
     long long univHash(const KeyType key, const long long table_size) const;
 };
 
@@ -35,7 +35,7 @@ class HashFunc
 template <>
 class HashFunc<long long>
 {
-  public:
+public:
     long long univHash(const long long key, const long long table_size) const
     {
         long long hv = fastMersenneModulo(static_cast<long long>(uh_param_a * key + uh_param_b));
@@ -48,13 +48,13 @@ class HashFunc<long long>
 template <>
 class HashFunc<std::string>
 {
-  private:
-    const int param_base = 37;      // the base used for inflating each character
-  public:    
-    long long univHash(const std::string& key, const long long table_size) const
+private:
+    const int param_base = 37; // the base used for inflating each character
+public:
+    long long univHash(const std::string &key, const long long table_size) const
     {
         long long hv = 0;
-        for(size_t i = 0; i < key.length(); ++ i)
+        for (size_t i = 0; i < key.length(); ++i)
         {
             hv = param_base * hv + static_cast<long long>(key[i]);
         }
@@ -68,8 +68,7 @@ class HashFunc<std::string>
 template <typename KeyType, typename ValueType>
 class HashedObj
 {
-  public:
-
+public:
     KeyType key;
     ValueType value;
 
@@ -78,39 +77,36 @@ class HashedObj
         return;
     }
 
-    HashedObj(const KeyType& k, const ValueType& v) :
-        key(k),
-        value(v)
-    {
-        return;
-    }
-  
-    HashedObj(KeyType && k, ValueType && v) :
-        key(std::move(k)),
-        value(std::move(v))
+    HashedObj(const KeyType &k, const ValueType &v) : key(k),
+                                                      value(v)
     {
         return;
     }
 
-    bool operator==(const HashedObj<KeyType, ValueType>& rhs)
+    HashedObj(KeyType &&k, ValueType &&v) : key(std::move(k)),
+                                            value(std::move(v))
+    {
+        return;
+    }
+
+    bool operator==(const HashedObj<KeyType, ValueType> &rhs)
     {
         return (key == rhs.key);
-    }    
+    }
 
-    bool operator!=(const HashedObj<KeyType, ValueType>& rhs)
+    bool operator!=(const HashedObj<KeyType, ValueType> &rhs)
     {
         return !(*this == rhs);
-    }   
-
+    }
 };
 
 template <typename KeyType, typename ValueType>
 class MyHashTable
-{ 
-  private:
-    size_t theSize; // the number of data elements stored in the hash table
-    MyVector<MyLinkedList<HashedObj<KeyType, ValueType> >* > hash_table;    // the hash table implementing the separate chaining approach
-    MyVector<size_t> primes;    // a set of precomputed and sorted prime numbers
+{
+private:
+    size_t theSize;                                                     // the number of data elements stored in the hash table
+    MyVector<MyLinkedList<HashedObj<KeyType, ValueType>> *> hash_table; // the hash table implementing the separate chaining approach
+    MyVector<size_t> primes;                                            // a set of precomputed and sorted prime numbers
 
     // pre-calculate a set of primes using the sieve of Eratosthenes algorithm
     // will be called if table doubling requires a larger prime number for table size
@@ -133,7 +129,7 @@ class MyHashTable
 
     // finds the MyLinkedList itertor that corresponds to the hashed object that has the specified key
     // returns the end() iterator if not found
-    typename MyLinkedList<HashedObj<KeyType, ValueType> >::iterator find(const KeyType& key)
+    typename MyLinkedList<HashedObj<KeyType, ValueType>>::iterator find(const KeyType &key)
     {
         // code begins
 
@@ -167,8 +163,7 @@ class MyHashTable
         return;
     }
 
-  public:
-
+public:
     // the default constructor; allocate memory if necessary
     explicit MyHashTable(const size_t init_size = 3)
     {
@@ -186,7 +181,7 @@ class MyHashTable
     }
 
     // checks if the hash tabel contains the given key
-    bool contains(const KeyType& key)
+    bool contains(const KeyType &key)
     {
         // code begins
 
@@ -196,7 +191,7 @@ class MyHashTable
     // retrieves the data element that has the specified key
     // returns true if the key is contained in the hash table
     // return false otherwise
-    bool retrieve(const KeyType& key, HashedObj<KeyType, ValueType>& data)
+    bool retrieve(const KeyType &key, HashedObj<KeyType, ValueType> &data)
     {
         // code begins
 
@@ -206,7 +201,7 @@ class MyHashTable
     // inserts the given data element into the hash table (copy)
     // returns true if the key is not contained in the hash table
     // return false otherwise
-    bool insert(const HashedObj<KeyType, ValueType>& x)
+    bool insert(const HashedObj<KeyType, ValueType> &x)
     {
         // code begins
 
@@ -216,7 +211,7 @@ class MyHashTable
     // inserts the given data element into the hash table (move)
     // returns true if the key is not contained in the hash table
     // return false otherwise
-    bool insert(HashedObj<KeyType, ValueType> && x)
+    bool insert(HashedObj<KeyType, ValueType> &&x)
     {
         // code begins
 
@@ -226,7 +221,7 @@ class MyHashTable
     // removes the data element that has the key from the hash table
     // returns true if the key is contained in the hash table
     // returns false otherwise
-    bool remove(const KeyType& key)
+    bool remove(const KeyType &key)
     {
         // code begins
 
@@ -248,8 +243,6 @@ class MyHashTable
 
         // code ends
     }
-
 };
-
 
 #endif // __MYHASHTABLE_H__
