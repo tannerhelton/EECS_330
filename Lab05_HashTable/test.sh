@@ -8,4 +8,4 @@ for i in {0..9}; do
     rm "result_$i.txt"
 done
 
-rm Lab
+rm Lab test_result
