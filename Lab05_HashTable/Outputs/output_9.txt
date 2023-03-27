@@ -1,0 +1,614 @@
+Data inserted: 928486	101000
+Table info: 1	3
+Data inserted: 288918	432553
+Table info: 2	17
+Data inserted: 854609	324309
+Table info: 3	17
+Data inserted: 164103	162430
+Table info: 4	17
+Data inserted: 227071	693262
+Table info: 5	17
+Data inserted: 415320	990636
+Table info: 6	17
+Data inserted: 371366	123200
+Table info: 7	17
+Data inserted: 169154	685517
+Table info: 8	17
+Data inserted: 737314	148439
+Table info: 9	37
+Data inserted: 232385	90693
+Table info: 10	37
+Data inserted: 166717	639429
+Table info: 11	37
+Data inserted: 819473	133564
+Table info: 12	37
+Data inserted: 25386	94910
+Table info: 13	37
+Data inserted: 320837	641758
+Table info: 14	37
+Data inserted: 356569	813597
+Table info: 15	37
+Data inserted: 683831	372333
+Table info: 16	37
+Data inserted: 591075	725993
+Table info: 17	37
+Data inserted: 736941	649001
+Table info: 18	37
+Data inserted: 190070	452192
+Table info: 19	79
+Data inserted: 355885	191604
+Table info: 20	79
+Data inserted: 152376	17943
+Table info: 21	79
+Data inserted: 824311	357427
+Table info: 22	79
+Data inserted: 216593	375277
+Table info: 23	79
+Data inserted: 63996	846123
+Table info: 24	79
+Data inserted: 104541	545495
+Table info: 25	79
+Data inserted: 94498	504702
+Table info: 26	79
+Data inserted: 22875	333810
+Table info: 27	79
+Data inserted: 183699	462894
+Table info: 28	79
+Data inserted: 344798	597323
+Table info: 29	79
+Data inserted: 938580	489593
+Table info: 30	79
+Data inserted: 575702	863454
+Table info: 31	79
+Data inserted: 49967	444614
+Table info: 32	79
+Data inserted: 81533	114052
+Table info: 33	79
+Data inserted: 292400	488972
+Table info: 34	79
+Data inserted: 703056	312339
+Table info: 35	79
+Data inserted: 799539	169256
+Table info: 36	79
+Data inserted: 365223	796675
+Table info: 37	79
+Data inserted: 544437	56671
+Table info: 38	79
+Data inserted: 660666	471900
+Table info: 39	79
+Data inserted: 438945	362972
+Table info: 40	163
+Data inserted: 313221	314534
+Table info: 41	163
+Data inserted: 243946	995951
+Table info: 42	163
+Data inserted: 293615	503994
+Table info: 43	163
+Data inserted: 936024	447302
+Table info: 44	163
+Data inserted: 324832	753037
+Table info: 45	163
+Data inserted: 974339	232415
+Table info: 46	163
+Data inserted: 874236	988471
+Table info: 47	163
+Data inserted: 515750	187929
+Table info: 48	163
+Data inserted: 89206	261759
+Table info: 49	163
+Data inserted: 791032	328419
+Table info: 50	163
+Data inserted: 605980	974601
+Table info: 51	163
+Data inserted: 3775	927090
+Table info: 52	163
+Data inserted: 382283	516655
+Table info: 53	163
+Data inserted: 301915	430374
+Table info: 54	163
+Data inserted: 213157	840041
+Table info: 55	163
+Data inserted: 69586	764878
+Table info: 56	163
+Data inserted: 445433	230676
+Table info: 57	163
+Data inserted: 299121	258412
+Table info: 58	163
+Data inserted: 660106	62170
+Table info: 59	163
+Data inserted: 952389	439647
+Table info: 60	163
+Data inserted: 296814	322837
+Table info: 61	163
+Data inserted: 560580	26632
+Table info: 62	163
+Data inserted: 620504	262297
+Table info: 63	163
+Data inserted: 115976	666512
+Table info: 64	163
+Data inserted: 54790	747009
+Table info: 65	163
+Data inserted: 871876	413741
+Table info: 66	163
+Data inserted: 385197	258777
+Table info: 67	163
+Data inserted: 627520	591212
+Table info: 68	163
+Data inserted: 849674	416856
+Table info: 69	163
+Data inserted: 620414	732190
+Table info: 70	163
+Data inserted: 359431	192521
+Table info: 71	163
+Data inserted: 245377	897440
+Table info: 72	163
+Data inserted: 162079	472564
+Table info: 73	163
+Data inserted: 698937	827897
+Table info: 74	163
+Data inserted: 819351	193664
+Table info: 75	163
+Data inserted: 344408	376048
+Table info: 76	163
+Data inserted: 972215	254538
+Table info: 77	163
+Data inserted: 509435	433107
+Table info: 78	163
+Data inserted: 866027	931413
+Table info: 79	163
+Data inserted: 865791	876315
+Table info: 80	163
+Data inserted: 595987	853098
+Table info: 81	163
+Data inserted: 983002	930684
+Table info: 82	331
+Data inserted: 302478	208348
+Table info: 83	331
+Data inserted: 988528	146535
+Table info: 84	331
+Data inserted: 532877	668640
+Table info: 85	331
+Data inserted: 269650	483333
+Table info: 86	331
+Data inserted: 654220	418992
+Table info: 87	331
+Data inserted: 673073	303624
+Table info: 88	331
+Data inserted: 381897	24334
+Table info: 89	331
+Data inserted: 469083	450066
+Table info: 90	331
+Data inserted: 822922	929118
+Table info: 91	331
+Data inserted: 709680	393257
+Table info: 92	331
+Data inserted: 833525	805809
+Table info: 93	331
+Data inserted: 698477	548857
+Table info: 94	331
+Data inserted: 326859	385323
+Table info: 95	331
+Data inserted: 405521	139879
+Table info: 96	331
+Data inserted: 896259	960111
+Table info: 97	331
+Data inserted: 766475	971903
+Table info: 98	331
+Data inserted: 677853	61257
+Table info: 99	331
+Data inserted: 890678	736364
+Table info: 100	331
+Data inserted: 782691	673327
+Table info: 101	331
+Data inserted: 706387	197964
+Table info: 102	331
+Data inserted: 364819	361589
+Table info: 103	331
+Data inserted: 663362	326075
+Table info: 104	331
+Data inserted: 956863	353619
+Table info: 105	331
+Data inserted: 999289	953469
+Table info: 106	331
+Data inserted: 12626	976514
+Table info: 107	331
+Data inserted: 853978	262263
+Table info: 108	331
+Data inserted: 986808	502887
+Table info: 109	331
+Data inserted: 123065	852262
+Table info: 110	331
+Data inserted: 998979	337468
+Table info: 111	331
+Data inserted: 895485	362663
+Table info: 112	331
+Data inserted: 211039	106697
+Table info: 113	331
+Data inserted: 807916	78805
+Table info: 114	331
+Data inserted: 991292	943889
+Table info: 115	331
+Data inserted: 561293	781818
+Table info: 116	331
+Data inserted: 153138	73127
+Table info: 117	331
+Data inserted: 129253	184870
+Table info: 118	331
+Data inserted: 471944	790836
+Table info: 119	331
+Data inserted: 49137	481099
+Table info: 120	331
+Data inserted: 998255	134088
+Table info: 121	331
+Data inserted: 317430	399886
+Table info: 122	331
+Data inserted: 678915	744756
+Table info: 123	331
+Data inserted: 339016	761187
+Table info: 124	331
+Data inserted: 450530	685985
+Table info: 125	331
+Data deleted: 928486
+Table info: 124	331
+Retrieval failed: 928486
+Data deleted: 288918
+Table info: 123	331
+Retrieval failed: 288918
+Data deleted: 854609
+Table info: 122	331
+Retrieval failed: 854609
+Data deleted: 164103
+Table info: 121	331
+Retrieval failed: 164103
+Data deleted: 227071
+Table info: 120	331
+Retrieval failed: 227071
+Data deleted: 415320
+Table info: 119	331
+Retrieval failed: 415320
+Data deleted: 371366
+Table info: 118	331
+Retrieval failed: 371366
+Data deleted: 169154
+Table info: 117	331
+Retrieval failed: 169154
+Data deleted: 737314
+Table info: 116	331
+Retrieval failed: 737314
+Data deleted: 232385
+Table info: 115	331
+Retrieval failed: 232385
+Data deleted: 166717
+Table info: 114	331
+Retrieval failed: 166717
+Data deleted: 819473
+Table info: 113	331
+Retrieval failed: 819473
+Data retrieved: 25386	94910
+Table info: 113	331
+Data deleted: 320837
+Table info: 112	331
+Retrieval failed: 320837
+Data deleted: 356569
+Table info: 111	331
+Retrieval failed: 356569
+Data deleted: 683831
+Table info: 110	331
+Retrieval failed: 683831
+Data retrieved: 591075	725993
+Table info: 110	331
+Data deleted: 736941
+Table info: 109	331
+Retrieval failed: 736941
+Data deleted: 190070
+Table info: 108	331
+Retrieval failed: 190070
+Data deleted: 355885
+Table info: 107	331
+Retrieval failed: 355885
+Data deleted: 152376
+Table info: 106	331
+Retrieval failed: 152376
+Data deleted: 824311
+Table info: 105	331
+Retrieval failed: 824311
+Data deleted: 216593
+Table info: 104	331
+Retrieval failed: 216593
+Data deleted: 63996
+Table info: 103	331
+Retrieval failed: 63996
+Data deleted: 104541
+Table info: 102	331
+Retrieval failed: 104541
+Data retrieved: 94498	504702
+Table info: 102	331
+Data deleted: 22875
+Table info: 101	331
+Retrieval failed: 22875
+Data deleted: 183699
+Table info: 100	331
+Retrieval failed: 183699
+Data deleted: 344798
+Table info: 99	331
+Retrieval failed: 344798
+Data deleted: 938580
+Table info: 98	331
+Retrieval failed: 938580
+Data deleted: 575702
+Table info: 97	331
+Retrieval failed: 575702
+Data deleted: 49967
+Table info: 96	331
+Retrieval failed: 49967
+Data deleted: 81533
+Table info: 95	331
+Retrieval failed: 81533
+Data deleted: 292400
+Table info: 94	331
+Retrieval failed: 292400
+Data deleted: 703056
+Table info: 93	331
+Retrieval failed: 703056
+Data deleted: 799539
+Table info: 92	331
+Retrieval failed: 799539
+Data deleted: 365223
+Table info: 91	331
+Retrieval failed: 365223
+Data deleted: 544437
+Table info: 90	331
+Retrieval failed: 544437
+Data deleted: 660666
+Table info: 89	331
+Retrieval failed: 660666
+Data deleted: 438945
+Table info: 88	331
+Retrieval failed: 438945
+Data deleted: 313221
+Table info: 87	331
+Retrieval failed: 313221
+Data deleted: 243946
+Table info: 86	331
+Retrieval failed: 243946
+Data deleted: 293615
+Table info: 85	331
+Retrieval failed: 293615
+Data deleted: 936024
+Table info: 84	331
+Retrieval failed: 936024
+Data deleted: 324832
+Table info: 83	331
+Retrieval failed: 324832
+Data deleted: 974339
+Table info: 82	331
+Retrieval failed: 974339
+Data deleted: 874236
+Table info: 81	331
+Retrieval failed: 874236
+Data deleted: 515750
+Table info: 80	331
+Retrieval failed: 515750
+Data deleted: 89206
+Table info: 79	331
+Retrieval failed: 89206
+Data retrieved: 791032	328419
+Table info: 79	331
+Data deleted: 605980
+Table info: 78	331
+Retrieval failed: 605980
+Data deleted: 3775
+Table info: 77	331
+Retrieval failed: 3775
+Data deleted: 382283
+Table info: 76	331
+Retrieval failed: 382283
+Data retrieved: 301915	430374
+Table info: 76	331
+Data deleted: 213157
+Table info: 75	331
+Retrieval failed: 213157
+Data deleted: 69586
+Table info: 74	331
+Retrieval failed: 69586
+Data deleted: 445433
+Table info: 73	331
+Retrieval failed: 445433
+Data retrieved: 299121	258412
+Table info: 73	331
+Data deleted: 660106
+Table info: 72	331
+Retrieval failed: 660106
+Data deleted: 952389
+Table info: 71	331
+Retrieval failed: 952389
+Data deleted: 296814
+Table info: 70	331
+Retrieval failed: 296814
+Data deleted: 560580
+Table info: 69	331
+Retrieval failed: 560580
+Data deleted: 620504
+Table info: 68	331
+Retrieval failed: 620504
+Data deleted: 115976
+Table info: 67	331
+Retrieval failed: 115976
+Data deleted: 54790
+Table info: 66	331
+Retrieval failed: 54790
+Data deleted: 871876
+Table info: 65	331
+Retrieval failed: 871876
+Data deleted: 385197
+Table info: 64	331
+Retrieval failed: 385197
+Data deleted: 627520
+Table info: 63	331
+Retrieval failed: 627520
+Data deleted: 849674
+Table info: 62	331
+Retrieval failed: 849674
+Data deleted: 620414
+Table info: 61	331
+Retrieval failed: 620414
+Data deleted: 359431
+Table info: 60	331
+Retrieval failed: 359431
+Data deleted: 245377
+Table info: 59	331
+Retrieval failed: 245377
+Data deleted: 162079
+Table info: 58	331
+Retrieval failed: 162079
+Data deleted: 698937
+Table info: 57	331
+Retrieval failed: 698937
+Data deleted: 819351
+Table info: 56	331
+Retrieval failed: 819351
+Data deleted: 344408
+Table info: 55	331
+Retrieval failed: 344408
+Data deleted: 972215
+Table info: 54	331
+Retrieval failed: 972215
+Data deleted: 509435
+Table info: 53	331
+Retrieval failed: 509435
+Data deleted: 866027
+Table info: 52	331
+Retrieval failed: 866027
+Data retrieved: 865791	876315
+Table info: 52	331
+Data deleted: 595987
+Table info: 51	331
+Retrieval failed: 595987
+Data deleted: 983002
+Table info: 50	331
+Retrieval failed: 983002
+Data deleted: 302478
+Table info: 49	331
+Retrieval failed: 302478
+Data deleted: 988528
+Table info: 48	331
+Retrieval failed: 988528
+Data deleted: 532877
+Table info: 47	331
+Retrieval failed: 532877
+Data deleted: 269650
+Table info: 46	331
+Retrieval failed: 269650
+Data deleted: 654220
+Table info: 45	331
+Retrieval failed: 654220
+Data deleted: 673073
+Table info: 44	331
+Retrieval failed: 673073
+Data deleted: 381897
+Table info: 43	331
+Retrieval failed: 381897
+Data deleted: 469083
+Table info: 42	331
+Retrieval failed: 469083
+Data deleted: 822922
+Table info: 41	167
+Retrieval failed: 822922
+Data retrieved: 709680	393257
+Table info: 41	167
+Data deleted: 833525
+Table info: 40	167
+Retrieval failed: 833525
+Data deleted: 698477
+Table info: 39	167
+Retrieval failed: 698477
+Data deleted: 326859
+Table info: 38	167
+Retrieval failed: 326859
+Data deleted: 405521
+Table info: 37	167
+Retrieval failed: 405521
+Data deleted: 896259
+Table info: 36	167
+Retrieval failed: 896259
+Data deleted: 766475
+Table info: 35	167
+Retrieval failed: 766475
+Data deleted: 677853
+Table info: 34	167
+Retrieval failed: 677853
+Data deleted: 890678
+Table info: 33	167
+Retrieval failed: 890678
+Data deleted: 782691
+Table info: 32	167
+Retrieval failed: 782691
+Data retrieved: 706387	197964
+Table info: 32	167
+Data deleted: 364819
+Table info: 31	167
+Retrieval failed: 364819
+Data deleted: 663362
+Table info: 30	167
+Retrieval failed: 663362
+Data deleted: 956863
+Table info: 29	167
+Retrieval failed: 956863
+Data deleted: 999289
+Table info: 28	167
+Retrieval failed: 999289
+Data deleted: 12626
+Table info: 27	167
+Retrieval failed: 12626
+Data deleted: 853978
+Table info: 26	167
+Retrieval failed: 853978
+Data deleted: 986808
+Table info: 25	167
+Retrieval failed: 986808
+Data deleted: 123065
+Table info: 24	167
+Retrieval failed: 123065
+Data deleted: 998979
+Table info: 23	167
+Retrieval failed: 998979
+Data deleted: 895485
+Table info: 22	167
+Retrieval failed: 895485
+Data deleted: 211039
+Table info: 21	167
+Retrieval failed: 211039
+Data retrieved: 807916	78805
+Table info: 21	167
+Data deleted: 991292
+Table info: 20	83
+Retrieval failed: 991292
+Data deleted: 561293
+Table info: 19	83
+Retrieval failed: 561293
+Data deleted: 153138
+Table info: 18	83
+Retrieval failed: 153138
+Data deleted: 129253
+Table info: 17	83
+Retrieval failed: 129253
+Data deleted: 471944
+Table info: 16	83
+Retrieval failed: 471944
+Data deleted: 49137
+Table info: 15	83
+Retrieval failed: 49137
+Data retrieved: 998255	134088
+Table info: 15	83
+Data deleted: 317430
+Table info: 14	83
+Retrieval failed: 317430
+Data deleted: 678915
+Table info: 13	83
+Retrieval failed: 678915
+Data deleted: 339016
+Table info: 12	83
+Retrieval failed: 339016
+Data deleted: 450530
+Table info: 11	83
+Retrieval failed: 450530
