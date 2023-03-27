@@ -158,10 +158,14 @@ private:
     // returns the end() iterator if not found
     typename MyLinkedList<HashedObj<KeyType, ValueType>>::iterator find(const KeyType &key)
     {
-        // code begins
         HashFunc<KeyType> hf;
         size_t index = hf.univHash(key, hash_table.size());
         auto &bucket = *hash_table[index];
+
+        if (bucket.empty())
+        { // check if the bucket is empty
+            return bucket.end();
+        }
 
         for (auto itr = bucket.begin(); itr != bucket.end(); ++itr)
         {
@@ -170,8 +174,8 @@ private:
                 return itr;
             }
         }
+
         return bucket.end();
-        // code ends
     }
 
     // rehashes all data elements in the hash table into a new hash table with new_size
