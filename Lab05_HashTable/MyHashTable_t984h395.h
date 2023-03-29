@@ -116,7 +116,29 @@ private:
     void preCalPrimes(const size_t n)
     {
         // code begins
+        std::vector<bool> is_prime(n + 1, true);
+        is_prime[0] = false;
+        is_prime[1] = false;
+        for (size_t i = 2; i * i <= n; ++i)
+        {
+            if (is_prime[i])
+            {
+                for (size_t j = i * i; j <= n; j += i)
+                {
+                    is_prime[j] = false;
+                }
+            }
+        }
 
+        // Store the prime numbers into the "primes" vector
+        primes.resize(0); // Reset the size of the "primes" vector
+        for (size_t i = 2; i <= n; ++i)
+        {
+            if (is_prime[i])
+            {
+                primes.push_back(i);
+            }
+        }
         // code ends
     }
 
@@ -139,6 +161,26 @@ private:
                 right = mid;
             }
         }
+        // If left is out of bounds, generate more primes
+        if (left >= primes.size())
+        {
+            preCalPrimes(2 * n); // Generate primes up to 2n
+            // Repeat binary search
+            left = 0;
+            right = primes.size();
+            while (left < right)
+            {
+                size_t mid = left + (right - left) / 2;
+                if (primes[mid] < n)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid;
+                }
+            }
+        }
         return primes[left];
         // code ends
     }
@@ -150,6 +192,11 @@ private:
         // code begins
         HashFunc<KeyType> hashFunc;
         long long hashValue = hashFunc.univHash(key, hash_table.size());
+        if (hashValue < 0 || hashValue >= static_cast<long long>(hash_table.size()))
+        {
+            // Return an end() iterator to indicate not found
+            return hash_table.back()->end();
+        }
         MyLinkedList<HashedObj<KeyType, ValueType>> *list = hash_table[hashValue];
         return std::find_if(list->begin(), list->end(), [&](const HashedObj<KeyType, ValueType> &obj)
                             { return obj.key == key; });
@@ -208,13 +255,15 @@ public:
     explicit MyHashTable(const size_t init_size = 3)
     {
         // code begins
+        size_t adjusted_size = std::max<size_t>(init_size, 3);
+
         theSize = 0;
-        hash_table.resize(init_size);
-        for (size_t i = 0; i < init_size; ++i)
+        hash_table.resize(adjusted_size);
+        for (size_t i = 0; i < adjusted_size; ++i)
         {
             hash_table[i] = new MyLinkedList<HashedObj<KeyType, ValueType>>();
         }
-        preCalPrimes(2 * init_size);
+        preCalPrimes(2 * adjusted_size);
         // code ends
     }
 
@@ -282,7 +331,7 @@ public:
         ++theSize;
 
         // Check if rehashing is needed
-        if (theSize > hash_table.size())
+        if (static_cast<float>(theSize) / hash_table.size() > 1.0)
         {
             doubleTable();
         }
@@ -309,7 +358,7 @@ public:
         ++theSize;
 
         // Check if rehashing is needed
-        if (theSize > hash_table.size())
+        if (static_cast<float>(theSize) / hash_table.size() > 1.0)
         {
             doubleTable();
         }
@@ -338,7 +387,7 @@ public:
         --theSize;
 
         // Check if rehashing is needed
-        if (theSize < hash_table.size() / 4) // Check if occupancy is below 25%
+        if (static_cast<float>(theSize) / hash_table.size() < 0.25)
         {
             halveTable();
         }
