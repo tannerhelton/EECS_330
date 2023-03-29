@@ -19,7 +19,9 @@ static const long long mersenne_prime = (1 << prime_digits) - 1; // the Mersenne
 long long fastMersenneModulo(const long long n)
 {
     // code begins
-
+    long long result = (n & mersenne_prime) + (n >> prime_digits);
+    result = (result >= mersenne_prime) ? (result - mersenne_prime) : result;
+    return result;
     // code ends
 }
 
