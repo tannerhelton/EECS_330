@@ -178,7 +178,10 @@ public:
     ~MyHashTable()
     {
         // code begins
-
+        for (size_t i = 0; i < hash_table.size(); ++i)
+        {
+            delete hash_table[i];
+        }
         // code ends
     }
 
