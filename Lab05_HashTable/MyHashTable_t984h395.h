@@ -234,7 +234,7 @@ public:
     size_t size()
     {
         // code begins
-
+        return theSize;
         // code ends
     }
 
@@ -242,7 +242,7 @@ public:
     size_t capacity()
     {
         // code begins
-
+        return hash_table.size();
         // code ends
     }
 };
