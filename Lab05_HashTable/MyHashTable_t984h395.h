@@ -125,7 +125,21 @@ private:
     size_t nextPrime(const size_t n)
     {
         // code begins
-
+        size_t left = 0;
+        size_t right = primes.size();
+        while (left < right)
+        {
+            size_t mid = left + (right - left) / 2;
+            if (primes[mid] < n)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid;
+            }
+        }
+        return primes[left];
         // code ends
     }
 
@@ -134,7 +148,11 @@ private:
     typename MyLinkedList<HashedObj<KeyType, ValueType>>::iterator find(const KeyType &key)
     {
         // code begins
-
+        HashFunc<KeyType> hashFunc;
+        long long hashValue = hashFunc.univHash(key, hash_table.size());
+        MyLinkedList<HashedObj<KeyType, ValueType>> *list = hash_table[hashValue];
+        return std::find_if(list->begin(), list->end(), [&](const HashedObj<KeyType, ValueType> &obj)
+                            { return obj.key == key; });
         // code ends
     }
 
@@ -143,7 +161,27 @@ private:
     void rehash(const size_t new_size)
     {
         // code begins
+        MyVector<MyLinkedList<HashedObj<KeyType, ValueType>> *> new_table(new_size);
+        for (size_t i = 0; i < new_size; ++i)
+        {
+            new_table[i] = new MyLinkedList<HashedObj<KeyType, ValueType>>();
+        }
 
+        // Rehash all elements to the new table
+        HashFunc<KeyType> hashFunc;
+        for (size_t i = 0; i < hash_table.size(); ++i)
+        {
+            MyLinkedList<HashedObj<KeyType, ValueType>> *list = hash_table[i];
+            for (const auto &obj : *list)
+            {
+                long long new_hashValue = hashFunc.univHash(obj.key, new_size);
+                new_table[new_hashValue]->push_back(obj);
+            }
+            delete list;
+        }
+
+        // Swap the old table with the new table
+        std::swap(hash_table, new_table);
         // code ends
     }
 
@@ -170,7 +208,13 @@ public:
     explicit MyHashTable(const size_t init_size = 3)
     {
         // code begins
-
+        theSize = 0;
+        hash_table.resize(init_size);
+        for (size_t i = 0; i < init_size; ++i)
+        {
+            hash_table[i] = new MyLinkedList<HashedObj<KeyType, ValueType>>();
+        }
+        preCalPrimes(2 * init_size);
         // code ends
     }
 
@@ -209,7 +253,14 @@ public:
     bool retrieve(const KeyType &key, HashedObj<KeyType, ValueType> &data)
     {
         // code begins
-
+        HashFunc<KeyType> hashFunc;
+        auto it = find(key);
+        if (it == hash_table[hashFunc.univHash(key, hash_table.size())]->end())
+        {
+            return false;
+        }
+        data = *it;
+        return true;
         // code ends
     }
 
@@ -219,7 +270,24 @@ public:
     bool insert(const HashedObj<KeyType, ValueType> &x)
     {
         // code begins
+        if (contains(x.key))
+        {
+            return false;
+        }
 
+        // Insert the element
+        HashFunc<KeyType> hashFunc;
+        long long hashValue = hashFunc.univHash(x.key, hash_table.size());
+        hash_table[hashValue]->push_back(x);
+        ++theSize;
+
+        // Check if rehashing is needed
+        if (theSize > hash_table.size())
+        {
+            doubleTable();
+        }
+
+        return true;
         // code ends
     }
 
@@ -229,7 +297,24 @@ public:
     bool insert(HashedObj<KeyType, ValueType> &&x)
     {
         // code begins
+        if (contains(x.key))
+        {
+            return false;
+        }
 
+        // Insert the element
+        HashFunc<KeyType> hashFunc;
+        long long hashValue = hashFunc.univHash(x.key, hash_table.size());
+        hash_table[hashValue]->push_back(std::move(x));
+        ++theSize;
+
+        // Check if rehashing is needed
+        if (theSize > hash_table.size())
+        {
+            doubleTable();
+        }
+
+        return true;
         // code ends
     }
 
@@ -239,7 +324,26 @@ public:
     bool remove(const KeyType &key)
     {
         // code begins
+        HashFunc<KeyType> hashFunc;
+        long long hashValue = hashFunc.univHash(key, hash_table.size());
+        MyLinkedList<HashedObj<KeyType, ValueType>> *list = hash_table[hashValue];
+        auto it = find(key);
+        if (it == list->end())
+        {
+            return false; // Key not found
+        }
 
+        // Remove the element
+        list->erase(it);
+        --theSize;
+
+        // Check if rehashing is needed
+        if (theSize < hash_table.size() / 4) // Check if occupancy is below 25%
+        {
+            halveTable();
+        }
+
+        return true;
         // code ends
     }
 
