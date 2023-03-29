@@ -189,7 +189,17 @@ public:
     bool contains(const KeyType &key)
     {
         // code begins
-
+        HashFunc<KeyType> hashFunc;
+        long long hashValue = hashFunc.univHash(key, hash_table.size());
+        MyLinkedList<HashedObj<KeyType, ValueType>> *list = hash_table[hashValue];
+        for (auto &x : *list)
+        {
+            if (x.key == key)
+            {
+                return true;
+            }
+        }
+        return false;
         // code ends
     }
 
