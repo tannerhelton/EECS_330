@@ -54,7 +54,18 @@ private:
     BinaryNode *findMin(BinaryNode *t) const
     {
         // code begins
-
+        if (t == nullptr)
+        {
+            return nullptr;
+        }
+        else if (t->left == nullptr)
+        {
+            return t;
+        }
+        else
+        {
+            return findMin(t->left);
+        }
         // code ends
     }
 
@@ -62,7 +73,18 @@ private:
     BinaryNode *findMax(BinaryNode *t) const
     {
         // code begins
-
+        if (t == nullptr)
+        {
+            return nullptr;
+        }
+        else if (t->right == nullptr)
+        {
+            return t;
+        }
+        else
+        {
+            return findMax(t->right);
+        }
         // code ends
     }
 
@@ -70,7 +92,22 @@ private:
     bool contains(const ComparableType &x, BinaryNode *t) const
     {
         // code begins
-
+        if (t == nullptr)
+        {
+            return false;
+        }
+        else if (x < t->element)
+        {
+            return contains(x, t->left);
+        }
+        else if (t->element < x)
+        {
+            return contains(x, t->right);
+        }
+        else
+        {
+            return true;
+        }
         // code ends
     }
 
@@ -78,7 +115,13 @@ private:
     void clear(BinaryNode *&t)
     {
         // code begins
-
+        if (t != nullptr)
+        {
+            clear(t->left);
+            clear(t->right);
+            delete t;
+        }
+        t = nullptr;
         // code ends
     }
 
@@ -92,8 +135,42 @@ private:
     // balances tree node t
     void balance(BinaryNode *&t)
     {
+        static const int ALLOWED_IMBALANCE = 1;
         // code begins
+        if (t != nullptr)
+        {
 
+            int leftG = height(t->left) - height(t->right);
+            int rightG = height(t->right) - height(t->left);
+            if (leftG > ALLOWED_IMBALANCE)
+            {
+                int leftL = height(t->left->left);
+                int leftR = height(t->left->right);
+                if (leftL >= leftR)
+                    rotateLeft(t);
+                else
+                    doubleRotateLeft(t);
+            }
+
+            else
+            {
+                if (rightG > ALLOWED_IMBALANCE)
+                {
+                    int rightL = height(t->right->left);
+                    int rightR = height(t->right->right);
+                    if (rightR >= rightL)
+                    {
+                        rotateRight(t);
+                    }
+                    else
+                    {
+                        doubleRotateRight(t);
+                    }
+                }
+            }
+
+            t->height = std::max(height(t->left), height(t->right)) + 1;
+        }
         // code ends
     }
 
@@ -101,7 +178,12 @@ private:
     void rotateLeft(BinaryNode *&t)
     {
         // code begins
-
+        BinaryNode *tmp = t->left;
+        t->left = tmp->right;
+        tmp->right = t;
+        t->height = std::max(height(t->left), height(t->right)) + 1;
+        tmp->height = std::max(height(tmp->left), t->height) + 1;
+        t = tmp;
         // code ends
     }
 
@@ -109,7 +191,12 @@ private:
     void rotateRight(BinaryNode *&t)
     {
         // code begins
-
+        BinaryNode *tmp = t->right;
+        t->right = tmp->left;
+        tmp->left = t;
+        t->height = std::max(height(t->left), height(t->right)) + 1;
+        tmp->height = std::max(height(tmp->right), t->height) + 1;
+        t = tmp;
         // code ends
     }
 
@@ -117,7 +204,8 @@ private:
     void doubleRotateLeft(BinaryNode *&t)
     {
         // code begins
-
+        rotateRight(t->left);
+        rotateLeft(t);
         // code ends
     }
 
@@ -125,7 +213,8 @@ private:
     void doubleRotateRight(BinaryNode *&t)
     {
         // code begins
-
+        rotateLeft(t->right);
+        rotateRight(t);
         // code ends
     }
 
@@ -134,7 +223,21 @@ private:
     void insert(const ComparableType &x, BinaryNode *&t)
     {
         // code begins
+        if (t == nullptr)
+        {
+            t = new BinaryNode(x, 1, nullptr, nullptr);
+            ++theSize;
+        }
+        else if (x < t->element)
+        {
+            insert(x, t->left);
+        }
+        else if (t->element < x)
+        {
+            insert(x, t->right);
+        }
 
+        balance(t);
         // code ends
     }
 
@@ -142,7 +245,21 @@ private:
     void insert(ComparableType &&x, BinaryNode *&t)
     {
         // code begins
+        if (t == nullptr)
+        {
+            t = new BinaryNode(std::move(x), 1, nullptr, nullptr);
+            ++theSize;
+        }
+        else if (x < t->element)
+        {
+            insert(std::move(x), t->left);
+        }
+        else if (t->element < x)
+        {
+            insert(std::move(x), t->right);
+        }
 
+        balance(t);
         // code ends
     }
 
@@ -151,7 +268,33 @@ private:
     void remove(const ComparableType &x, BinaryNode *&t)
     {
         // code begins
+        if (t == nullptr)
+            return;
+        if (x < t->element)
+            remove(x, t->left);
+        else if (x > t->element)
+            remove(x, t->right);
+        else if (t->left != nullptr && t->right != nullptr)
+        {
+            t->element = findMin(t->right)->element;
+            remove(t->element, t->right);
+        }
+        else
+        {
+            BinaryNode *oldNode = t;
+            if (t->left != nullptr)
+            {
+                t = t->left;
+            }
+            else
+            {
+                t = t->right;
+            }
+            delete oldNode;
+            theSize--;
+        }
 
+        balance(t);
         // code ends
     }
 
@@ -264,7 +407,11 @@ public:
     const ComparableType &findMin() const
     {
         // code begins
-
+        if (empty())
+        {
+            throw std::underflow_error("Cannot find the minimum in an empty tree.");
+        }
+        return findMin(root)->element;
         // code ends
     }
 
@@ -272,7 +419,11 @@ public:
     const ComparableType &findMax() const
     {
         // code begins
-
+        if (empty())
+        {
+            throw std::underflow_error("Cannot find the maximum in an empty tree.");
+        }
+        return findMax(root)->element;
         // code ends
     }
 
@@ -280,7 +431,7 @@ public:
     bool contains(const ComparableType &x) const
     {
         // code begins
-
+        return contains(x, root);
         // code ends
     }
 
@@ -288,7 +439,7 @@ public:
     size_t size(void) const
     {
         // code begins
-
+        return theSize;
         // code ends
     }
 
@@ -298,7 +449,7 @@ public:
     size_t depth(void) const
     {
         // code begins
-
+        return height(root);
         // code ends
     }
 
@@ -306,7 +457,7 @@ public:
     bool empty() const
     {
         // code begins
-
+        return theSize == 0;
         // code ends
     }
 
@@ -314,7 +465,8 @@ public:
     void clear()
     {
         // code begins
-
+        clear(root);
+        theSize = 0;
         // code ends
     }
 
@@ -322,7 +474,7 @@ public:
     void insert(const ComparableType &x)
     {
         // code begins
-
+        insert(x, root);
         // code ends
     }
 
@@ -330,7 +482,7 @@ public:
     void insert(ComparableType &&x)
     {
         // code begins
-
+        insert(std::move(x), root);
         // code ends
     }
 
@@ -338,7 +490,7 @@ public:
     void remove(const ComparableType &x)
     {
         // code begins
-
+        remove(x, root);
         // code ends
     }
 
@@ -346,7 +498,13 @@ public:
     MyBST &operator=(const MyBST &rhs)
     {
         // code begins
-
+        if (this != &rhs)
+        {
+            clear();
+            root = clone(rhs.root);
+            theSize = rhs.theSize;
+        }
+        return *this;
         // code ends
     }
 
@@ -354,7 +512,13 @@ public:
     MyBST &operator=(MyBST &&rhs)
     {
         // code begins
-
+        if (this != &rhs)
+        {
+            clear();
+            std::swap(root, rhs.root);
+            std::swap(theSize, rhs.theSize);
+        }
+        return *this;
         // code ends
     }
 
@@ -364,7 +528,29 @@ public:
     bool lowestCommonAncestor(const ComparableType &x, const ComparableType &y, ComparableType &lca)
     {
         // code begins
+        BinaryNode *current = root;
 
+        while (current != nullptr)
+        {
+            if (x < current->element && y < current->element)
+            {
+                current = current->left;
+            }
+            else if (x > current->element && y > current->element)
+            {
+                current = current->right;
+            }
+            else
+            {
+                if (contains(x, current) && contains(y, current))
+                {
+                    lca = current->element;
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
         // code ends
     }
 
