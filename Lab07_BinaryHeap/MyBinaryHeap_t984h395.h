@@ -19,7 +19,13 @@ private:
     void percolateUp(const size_t p)
     {
         // code begins
-
+        ComparableType tmp = std::move(data[p]);
+        size_t hole = p;
+        for (; hole > 1 && tmp < data[hole / 2]; hole /= 2)
+        {
+            data[hole] = std::move(data[hole / 2]);
+        }
+        data[hole] = std::move(tmp);
         // code ends
     }
 
@@ -27,7 +33,27 @@ private:
     void percolateDown(const size_t p)
     {
         // code begins
+        size_t child;
+        size_t hole = p;
+        ComparableType tmp = std::move(data[p]);
 
+        for (; hole * 2 <= data.size() - 1; hole = child)
+        {
+            child = hole * 2;
+            if (child != data.size() - 1 && data[child + 1] < data[child])
+            {
+                child++;
+            }
+            if (data[child] < tmp)
+            {
+                data[hole] = std::move(data[child]);
+            }
+            else
+            {
+                break;
+            }
+        }
+        data[hole] = std::move(tmp);
         // code ends
     }
 
@@ -35,7 +61,10 @@ private:
     void buildHeap()
     {
         // code begins
-
+        for (size_t i = data.size() / 2; i > 0; --i)
+        {
+            percolateDown(i);
+        }
         // code ends
     }
 
@@ -49,23 +78,27 @@ public:
     }
 
     // constructor from a set of data elements
-    MyBinaryHeap(const MyVector<ComparableType> &items) : data(1) // reserve data[0]
+    MyBinaryHeap(const MyVector<ComparableType> &items) : data(items.size() + 1) // reserve data[0]
     {
         // code begins
 
+        for (size_t i = 0; i < items.size(); ++i)
+        {
+            data[i + 1] = items[i];
+        }
+        buildHeap();
         // code ends
     }
 
     // copy constructor
-    MyBinaryHeap(const MyBinaryHeap<ComparableType> &rhs)
+    MyBinaryHeap(const MyBinaryHeap<ComparableType> &rhs) : data(rhs.data)
     {
         // code begins
-
         // code ends
     }
 
     // move constructor
-    MyBinaryHeap(MyBinaryHeap<ComparableType> &&rhs)
+    MyBinaryHeap(MyBinaryHeap<ComparableType> &&rhs) : data(std::move(rhs.data))
     {
         // code begins
 
@@ -76,7 +109,11 @@ public:
     MyBinaryHeap &operator=(const MyBinaryHeap<ComparableType> &rhs)
     {
         // code begins
-
+        if (this != &rhs)
+        {
+            data = rhs.data;
+        }
+        return *this;
         // code ends
     }
 
@@ -84,7 +121,11 @@ public:
     MyBinaryHeap &operator=(MyBinaryHeap<ComparableType> &&rhs)
     {
         // code begins
-
+        if (this != &rhs)
+        {
+            data = std::move(rhs.data);
+        }
+        return *this;
         // code ends
     }
 
@@ -92,7 +133,8 @@ public:
     void enqueue(const ComparableType &x)
     {
         // code begins
-
+        data.push_back(x);
+        percolateUp(data.size() - 1);
         // code ends
     }
 
@@ -100,7 +142,8 @@ public:
     void enqueue(ComparableType &&x)
     {
         // code begins
-
+        data.push_back(std::move(x));
+        percolateUp(data.size() - 1);
         // code ends
     }
 
@@ -108,7 +151,7 @@ public:
     const ComparableType &front()
     {
         // code begins
-
+        return data[1];
         // code ends
     }
 
@@ -116,7 +159,9 @@ public:
     void dequeue()
     {
         // code begins
-
+        data[1] = std::move(data[data.size() - 1]);
+        data.pop_back();
+        percolateDown(1);
         // code ends
     }
 
@@ -124,7 +169,14 @@ public:
     bool verifyHeapProperty(void)
     {
         // code begins
-
+        for (size_t i = 1; i * 2 < data.size(); ++i)
+        {
+            if (data[i * 2] < data[i] || (i * 2 + 1 < data.size() && data[i * 2 + 1] < data[i]))
+            {
+                return false;
+            }
+        }
+        return true;
         // code ends
     }
 
@@ -146,7 +198,12 @@ public:
     MyBinaryHeap &merge(MyBinaryHeap<ComparableType> &&rhs)
     {
         // code begins
-
+        data.reserve(data.size() + rhs.data.size());
+        for (size_t i = 1; i < rhs.data.size(); ++i)
+        {
+            enqueue(std::move(rhs.data[i]));
+        }
+        return *this;
         // code ends
     }
 
@@ -154,7 +211,12 @@ public:
     void increaseKey(const size_t p, const unsigned int d)
     {
         // code begins
-
+        if (p < 1 || p >= data.size())
+        {
+            return;
+        }
+        data[p] = data[p] + ComparableType(d);
+        percolateUp(p);
         // code ends
     }
 
@@ -163,7 +225,19 @@ public:
     void decreaseKey(const size_t p, const unsigned int d)
     {
         // code begins
-
+        if (p < 1 || p >= data.size())
+        {
+            return;
+        }
+        if (data[p] < ComparableType(d))
+        {
+            data[p] = ComparableType(0);
+        }
+        else
+        {
+            data[p] = data[p] - ComparableType(d);
+        }
+        percolateDown(p);
         // code ends
     }
 
@@ -171,7 +245,7 @@ public:
     bool empty()
     {
         // code begins
-
+        return data.size() == 1;
         // code ends
     }
 
@@ -179,7 +253,8 @@ public:
     void clear()
     {
         // code begins
-
+        data.clear();
+        data.push_back(ComparableType());
         // code ends
     }
 
@@ -187,7 +262,7 @@ public:
     size_t size()
     {
         // code begins
-
+        return data.size() - 1;
         // code ends
     }
 
