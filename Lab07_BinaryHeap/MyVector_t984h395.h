@@ -4,14 +4,14 @@
 #include <utility>
 #include <vector>
 
-template <typename DataType>
+template <typename ComparableType>
 class MyVector
 {
 private:
   /* data */
-  size_t theSize;     // the number of data elements the vector is currently holding
-  size_t theCapacity; // maximum data elements the vector can hold
-  DataType *data;     // address of the data storage
+  size_t theSize;       // the number of data elements the vector is currently holding
+  size_t theCapacity;   // maximum data elements the vector can hold
+  ComparableType *data; // address of the data storage
 
 public:
   static const size_t SPARE_CAPACITY = 16; // initial capacity of the vector
@@ -21,7 +21,7 @@ public:
                                            theCapacity(initSize + SPARE_CAPACITY)
   {
     // code begins
-    data = new DataType[theCapacity];
+    data = new ComparableType[theCapacity];
     // code ends
   }
 
@@ -30,7 +30,7 @@ public:
                                   theCapacity(rhs.theCapacity)
   {
     // code begins
-    data = new DataType[theCapacity];
+    data = new ComparableType[theCapacity];
     for (size_t i = 0; i < theSize; i++)
     {
       data[i] = rhs.data[i];
@@ -51,11 +51,11 @@ public:
   }
 
   // copy constructor from STL vector implementation
-  MyVector(const std::vector<DataType> &rhs) : theSize{rhs.size()},
-                                               theCapacity{rhs.size() + SPARE_CAPACITY}
+  MyVector(const std::vector<ComparableType> &rhs) : theSize{rhs.size()},
+                                                     theCapacity{rhs.size() + SPARE_CAPACITY}
   {
     // code begins
-    data = new DataType[theCapacity];
+    data = new ComparableType[theCapacity];
     for (size_t i = 0; i < theSize; i++)
     {
       data[i] = rhs[i];
@@ -80,7 +80,7 @@ public:
       delete[] data;
       theSize = rhs.theSize;
       theCapacity = rhs.theCapacity;
-      data = new DataType[theCapacity];
+      data = new ComparableType[theCapacity];
       for (size_t i = 0; i < theSize; i++)
       {
         data[i] = rhs.data[i];
@@ -127,7 +127,7 @@ public:
     {
       return;
     }
-    DataType *newArray = new DataType[newCapacity];
+    ComparableType *newArray = new ComparableType[newCapacity];
     for (size_t i = 0; i < theSize; i++)
     {
       newArray[i] = std::move(data[i]);
@@ -139,14 +139,14 @@ public:
   }
 
   // data access operator (without bound checking)
-  DataType &operator[](size_t index)
+  ComparableType &operator[](size_t index)
   {
     // code begins
     return data[index];
     // code ends
   }
 
-  const DataType &operator[](size_t index) const
+  const ComparableType &operator[](size_t index) const
   {
     // code begins
     return data[index];
@@ -178,7 +178,7 @@ public:
   }
 
   // insert an data element to the end of the vector
-  void push_back(const DataType &x)
+  void push_back(const ComparableType &x)
   {
     // code begins
     if (theSize == theCapacity)
@@ -189,7 +189,7 @@ public:
     // code ends
   }
 
-  void push_back(DataType &&x)
+  void push_back(ComparableType &&x)
   {
     // code begins
     if (theSize == theCapacity)
@@ -201,7 +201,7 @@ public:
   }
 
   // append a vector as indicated by the parameter to the current vector
-  MyVector<DataType> &append(MyVector<DataType> &&rhs)
+  MyVector<ComparableType> &append(MyVector<ComparableType> &&rhs)
   {
     // code begins
     if (theSize + rhs.theSize > theCapacity)
@@ -226,7 +226,7 @@ public:
   }
 
   // returns the last data elemtn from the array
-  const DataType &back() const
+  const ComparableType &back() const
   {
     // code begins
     return data[theSize - 1];
@@ -235,8 +235,8 @@ public:
 
   // iterator implementation
 
-  typedef DataType *iterator;
-  typedef const DataType *const_iterator;
+  typedef ComparableType *iterator;
+  typedef const ComparableType *const_iterator;
 
   iterator begin()
   {
