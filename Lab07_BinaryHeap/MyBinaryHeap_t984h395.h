@@ -21,7 +21,7 @@ private:
         // code begins
         ComparableType tmp = std::move(data[p]);
         size_t hole = p;
-        for (; hole > 1 && tmp < data[hole / 2]; hole /= 2)
+        for (; hole > 1 && tmp > data[hole / 2]; hole /= 2)
         {
             data[hole] = std::move(data[hole / 2]);
         }
@@ -40,11 +40,11 @@ private:
         for (; hole * 2 <= data.size() - 1; hole = child)
         {
             child = hole * 2;
-            if (child != data.size() - 1 && data[child + 1] < data[child])
+            if (child != data.size() - 1 && data[child + 1] > data[child])
             {
                 child++;
             }
-            if (data[child] < tmp)
+            if (data[child] > tmp)
             {
                 data[hole] = std::move(data[child]);
             }
@@ -78,10 +78,9 @@ public:
     }
 
     // constructor from a set of data elements
-    MyBinaryHeap(const MyVector<ComparableType> &items) : data(items.size() + 1) // reserve data[0]
+    MyBinaryHeap(const MyVector<ComparableType> &items) : data(1) // reserve data[0]
     {
         // code begins
-
         for (size_t i = 0; i < items.size(); ++i)
         {
             data[i + 1] = items[i];
