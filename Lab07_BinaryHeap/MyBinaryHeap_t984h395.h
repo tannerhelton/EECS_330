@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <chrono>
+#include <ctime>
 
 #include "MyVector_t984h395.h"
 
@@ -78,7 +80,7 @@ public:
     }
 
     // constructor from a set of data elements
-    MyBinaryHeap(const MyVector<ComparableType> &items) : data(1) // reserve data[0]
+    MyBinaryHeap(const MyVector<ComparableType> &items) : data(items.size() + 1)
     {
         // code begins
         for (size_t i = 0; i < items.size(); ++i)
@@ -90,9 +92,13 @@ public:
     }
 
     // copy constructor
-    MyBinaryHeap(const MyBinaryHeap<ComparableType> &rhs) : data(rhs.data)
+    MyBinaryHeap(const MyBinaryHeap<ComparableType> &rhs) : data(rhs.data.size())
     {
         // code begins
+        for (size_t i = 1; i < rhs.data.size(); ++i)
+        {
+            data[i] = rhs.data[i];
+        }
         // code ends
     }
 
@@ -110,7 +116,11 @@ public:
         // code begins
         if (this != &rhs)
         {
-            data = rhs.data;
+            data.resize(rhs.data.size());
+            for (size_t i = 0; i < rhs.data.size(); ++i)
+            {
+                data[i] = rhs.data[i];
+            }
         }
         return *this;
         // code ends
@@ -128,7 +138,6 @@ public:
         // code ends
     }
 
-    // inserts x into the priority queue (copy)
     void enqueue(const ComparableType &x)
     {
         // code begins
@@ -137,7 +146,7 @@ public:
         // code ends
     }
 
-    // inserts x into the priority queue (move)
+    // For the move version
     void enqueue(ComparableType &&x)
     {
         // code begins
@@ -168,9 +177,13 @@ public:
     bool verifyHeapProperty(void)
     {
         // code begins
+        if (data.size() <= 2)
+        {
+            return true;
+        }
         for (size_t i = 1; i * 2 < data.size(); ++i)
         {
-            if (data[i * 2] < data[i] || (i * 2 + 1 < data.size() && data[i * 2 + 1] < data[i]))
+            if (data[i] < data[i * 2] || (i * 2 + 1 < data.size() && data[i] < data[i * 2 + 1]))
             {
                 return false;
             }
@@ -182,15 +195,19 @@ public:
     // disrupts heap property by random shuffling
     void disruptHeapProperty(void)
     {
-        if (data.size() <= 3)
-            return;
-        for (size_t i = 0; i < 1000; ++i)
+        if (data.size() > 3)
         {
-            size_t p = 1 + ((int)rand()) % (data.size() - 1);
-            size_t q = 1 + ((int)rand()) % (data.size() - 1);
-            std::swap(data[p], data[q]);
+            // auto now = std::chrono::high_resolution_clock::now();
+            // auto seed = std::chrono::duration_cast<std::chrono::nanoseconds>(now.time_since_epoch()).count();
+            // std::srand(seed);
+
+            for (size_t i = 0; i < 1000; ++i)
+            {
+                size_t p = 1 + ((int)rand()) % (data.size() - 1);
+                size_t q = 1 + ((int)rand()) % (data.size() - 1);
+                std::swap(data[p], data[q]);
+            }
         }
-        return;
     }
 
     // merges two heaps; the second heap can be destructed after the merge
@@ -200,8 +217,9 @@ public:
         data.reserve(data.size() + rhs.data.size());
         for (size_t i = 1; i < rhs.data.size(); ++i)
         {
-            enqueue(std::move(rhs.data[i]));
+            data.push_back(std::move(rhs.data[i]));
         }
+        buildHeap();
         return *this;
         // code ends
     }
@@ -214,7 +232,7 @@ public:
         {
             return;
         }
-        data[p] = data[p] + ComparableType(d);
+        data[p] = data[p] + d;
         percolateUp(p);
         // code ends
     }
@@ -228,13 +246,13 @@ public:
         {
             return;
         }
-        if (data[p] < ComparableType(d))
+        if (data[p] < d)
         {
-            data[p] = ComparableType(0);
+            data[p] = 0;
         }
         else
         {
-            data[p] = data[p] - ComparableType(d);
+            data[p] = data[p] - d;
         }
         percolateDown(p);
         // code ends
@@ -253,7 +271,7 @@ public:
     {
         // code begins
         data.clear();
-        data.push_back(ComparableType());
+        data.reserve(1);
         // code ends
     }
 

@@ -5,6 +5,7 @@ done
 
 for i in {0..9}; do
     python3 GradingScript.py "result_$i.txt" "Outputs/output_$i.txt"
+    # diff "result_$i.txt" "Outputs/output_$i.txt" | grep "^>" | wc -l
     rm "result_$i.txt"
 done
 
