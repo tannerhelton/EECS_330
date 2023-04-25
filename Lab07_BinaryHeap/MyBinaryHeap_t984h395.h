@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <chrono>
-#include <ctime>
 
 #include "MyVector_t984h395.h"
 
@@ -197,10 +195,6 @@ public:
     {
         if (data.size() > 3)
         {
-            // auto now = std::chrono::high_resolution_clock::now();
-            // auto seed = std::chrono::duration_cast<std::chrono::nanoseconds>(now.time_since_epoch()).count();
-            // std::srand(seed);
-
             for (size_t i = 0; i < 1000; ++i)
             {
                 size_t p = 1 + ((int)rand()) % (data.size() - 1);
