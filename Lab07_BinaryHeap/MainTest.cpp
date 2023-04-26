@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
         else
             cout << "Heap property violated." << endl;
 
-        bh.merge(move(bh2));
+        bh.merge(std::move(bh2));
         if (bh.verifyHeapProperty())
             cout << "Heap property checked." << endl;
         else

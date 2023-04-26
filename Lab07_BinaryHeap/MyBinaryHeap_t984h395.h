@@ -15,10 +15,8 @@ class MyBinaryHeap
 private:
     MyVector<ComparableType> data; // the array that holds the data elements
 
-    // moves the data element at the pth position of the array up
     void percolateUp(const size_t p)
     {
-        // code begins
         ComparableType tmp = std::move(data[p]);
         size_t hole = p;
         for (; hole > 1 && tmp > data[hole / 2]; hole /= 2)
@@ -26,13 +24,10 @@ private:
             data[hole] = std::move(data[hole / 2]);
         }
         data[hole] = std::move(tmp);
-        // code ends
     }
 
-    // moves the data element at the pth position of the array down
     void percolateDown(const size_t p)
     {
-        // code begins
         size_t child;
         size_t hole = p;
         ComparableType tmp = std::move(data[p]);
@@ -54,64 +49,45 @@ private:
             }
         }
         data[hole] = std::move(tmp);
-        // code ends
     }
 
-    // reorders the data elements in the array to ensure heap property
     void buildHeap()
     {
-        // code begins
         for (size_t i = data.size() / 2; i > 0; --i)
         {
             percolateDown(i);
         }
-        // code ends
     }
 
 public:
     // default constructor
-    explicit MyBinaryHeap() : data(1) // reserve data[0]
-    {
-        // code begins
-
-        // code ends
-    }
+    explicit MyBinaryHeap() : data(1) {}
 
     // constructor from a set of data elements
     MyBinaryHeap(const MyVector<ComparableType> &items) : data(items.size() + 1)
     {
-        // code begins
         for (size_t i = 0; i < items.size(); ++i)
         {
             data[i + 1] = items[i];
         }
         buildHeap();
-        // code ends
     }
 
     // copy constructor
     MyBinaryHeap(const MyBinaryHeap<ComparableType> &rhs) : data(rhs.data.size())
     {
-        // code begins
         for (size_t i = 1; i < rhs.data.size(); ++i)
         {
             data[i] = rhs.data[i];
         }
-        // code ends
     }
 
     // move constructor
-    MyBinaryHeap(MyBinaryHeap<ComparableType> &&rhs) : data(std::move(rhs.data))
-    {
-        // code begins
-
-        // code ends
-    }
+    MyBinaryHeap(MyBinaryHeap<ComparableType> &&rhs) : data(std::move(rhs.data)) {}
 
     // copy assignment
     MyBinaryHeap &operator=(const MyBinaryHeap<ComparableType> &rhs)
     {
-        // code begins
         if (this != &rhs)
         {
             data.resize(rhs.data.size());
@@ -121,60 +97,48 @@ public:
             }
         }
         return *this;
-        // code ends
     }
 
     // move assignment
     MyBinaryHeap &operator=(MyBinaryHeap<ComparableType> &&rhs)
     {
-        // code begins
         if (this != &rhs)
         {
             data = std::move(rhs.data);
         }
         return *this;
-        // code ends
     }
 
     void enqueue(const ComparableType &x)
     {
-        // code begins
         data.push_back(x);
         percolateUp(data.size() - 1);
-        // code ends
     }
 
     // For the move version
     void enqueue(ComparableType &&x)
     {
-        // code begins
         data.push_back(std::move(x));
         percolateUp(data.size() - 1);
-        // code ends
     }
 
     // accesses the data element with the highest priority
     const ComparableType &front()
     {
-        // code begins
         return data[1];
-        // code ends
     }
 
     // deletes the data element with the highest priority from the queue
     void dequeue()
     {
-        // code begins
         data[1] = std::move(data[data.size() - 1]);
         data.pop_back();
         percolateDown(1);
-        // code ends
     }
 
     // verifies whether the array satisfies the heap property
     bool verifyHeapProperty(void)
     {
-        // code begins
         if (data.size() <= 2)
         {
             return true;
@@ -187,7 +151,6 @@ public:
             }
         }
         return true;
-        // code ends
     }
 
     // disrupts heap property by random shuffling
